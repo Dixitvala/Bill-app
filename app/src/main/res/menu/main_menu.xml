@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dashboard"
+            android:title="@string/dashboard" />
+        <item
+            android:id="@+id/custVend"
+            android:title="@string/customer_vendor" />
+        <item
+            android:id="@+id/product"
+            android:title="@string/products" />
+        <item
+            android:id="@+id/saleInvoice"
+            android:title="@string/sale_invoice" />
+        <item
+            android:id="@+id/purchaseInvoice"
+            android:title="@string/purchase_invoice" />
+    </group>
+    <item
+        android:id="@+id/payment"
+        android:title="@string/payment"
+        >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/inwardP"
+                    android:title="@string/inward_payment_sales_inv" />
+                <item
+                    android:id="@+id/outwardP"
+                    android:title="@string/outward_payment_purchase_inv" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/otherDocs"
+        android:title="@string/other_documents">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/quotation"
+                    android:title="@string/quotation" />
+                <item
+                    android:id="@+id/proformaInvoice"
+                    android:title="@string/proforma_invoice" />
+                <item
+                    android:id="@+id/creditNote"
+                    android:title="@string/credit_note" />
+                <item
+                    android:id="@+id/debitNote"
+                    android:title="@string/debit_note" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/reports"
+        android:title="@string/reports">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sales"
+                    android:title="@string/sales" />
+                <item
+                    android:id="@+id/inwardPayment"
+                    android:title="@string/inward_payment" />
+                <item
+                    android:id="@+id/purchase"
+                    android:title="Purchase" />
+                <item
+                    android:id="@+id/ourwardPayment"
+                    android:title="@string/outward_payment" />
+                <item
+                    android:id="@+id/companyLedger"
+                    android:title="@string/company_ledger" />
+                <item
+                    android:id="@+id/profitNloss"
+                    android:title="@string/profit_and_loss" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">BillApp</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="not_yet_registered_signup_now">Not yet registered? SignUp Now</string>
+    <string name="submit">Submit</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="company_name">Company name</string>
+    <string name="full_name">Full name</string>
+    <string name="address">Address</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="loading">Loading...</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="customer_vendor">Customer / Vendor</string>
+    <string name="products">Products</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
+    <string name="sale_invoice">Sale Invoice</string>
+    <string name="purchase_invoice">Purchase Invoice</string>
+    <string name="payment">Payment</string>
+    <string name="inward_payment_sales_inv">Inward Payment(Sales Inv.)</string>
+    <string name="outward_payment_purchase_inv">Outward Payment(Purchase Inv.)</string>
+    <string name="other_documents">Other Documents</string>
+    <string name="quotation">Quotation</string>
+    <string name="proforma_invoice">Proforma Invoice</string>
+    <string name="credit_note">Credit Note</string>
+    <string name="debit_note">Debit Note</string>
+    <string name="sales">Sales</string>
+    <string name="reports">Reports</string>
+    <string name="inward_payment">Inward Payment</string>
+    <string name="outward_payment">Outward Payment</string>
+    <string name="company_ledger">Company Ledger</string>
+    <string name="profit_and_loss">Profit and Loss</string>
+</resources>
