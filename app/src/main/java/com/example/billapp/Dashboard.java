@@ -66,18 +66,11 @@ public class Dashboard extends AppCompatActivity {
                     Toast.makeText(Dashboard.this, "Sale Invoice", Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.purchaseInvoice) {
                     Toast.makeText(Dashboard.this, "Purchase Invoice", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.inwardP) {
-                    Toast.makeText(Dashboard.this, "Inward Payment", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.outwardP) {
-                    Toast.makeText(Dashboard.this, "Outward Payment", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.quotation) {
-                    Toast.makeText(Dashboard.this, "Quotation", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.proformaInvoice) {
-                    Toast.makeText(Dashboard.this, "Proforma Invoice", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.creditNote) {
-                    Toast.makeText(Dashboard.this, "Credit Note", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.debitNote) {
-                    Toast.makeText(Dashboard.this, "Debit Note", Toast.LENGTH_SHORT).show();
+                } else if (id == R.id.logout) {
+                    editor.clear();
+                    editor.commit();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
                 }
                 return false;
             }

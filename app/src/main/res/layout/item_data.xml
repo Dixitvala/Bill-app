@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/App_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:text="@string/company_name"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/emailHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingBottom="5sp"
+        android:text="@string/email"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/cnoHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingBottom="5sp"
+        android:text="Contact no"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/addressHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingBottom="5sp"
+        android:text="@string/address"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/noteHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10sp"
+        android:paddingBottom="5sp"
+        android:text="@string/note"
+        android:textColor="@color/white" />
+
+</LinearLayout>

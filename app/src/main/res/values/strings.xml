@@ -33,4 +33,13 @@
     <string name="outward_payment">Outward Payment</string>
     <string name="company_ledger">Company Ledger</string>
     <string name="profit_and_loss">Profit and Loss</string>
+    <string name="logout">Logout</string>
+    <string name="contact_number">Contact number</string>
+    <string name="no_customer_vendor_found">No customer/vendor found</string>
+    <string name="customer">Customer</string>
+    <string name="vendor">Vendor</string>
+    <string name="customers_vendors">Customers/Vendors</string>
+    <string name="add_new">Add new</string>
+    <string name="note">Note</string>
+    <string name="add">Add</string>
 </resources>
