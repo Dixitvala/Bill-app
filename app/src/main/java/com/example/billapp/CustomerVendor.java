@@ -1,5 +1,7 @@
 package com.example.billapp;
 
+import static android.view.View.VISIBLE;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,11 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -33,17 +39,30 @@ public class CustomerVendor extends AppCompatActivity {
     EditText cnameET, cnoET, emailET, addressET, noteET;
     ArrayList<CustVendModel> dataList;
     RecyclerView rcvData;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    TextView ndfTxt, radioTxtbox;
+    String id;
+    RadioGroup radioGroup;
+    RadioButton selectedRadioBtn;
+    String selectedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_vendor);
 
+        // sharedPreference
+        sharedPreferences = getSharedPreferences("sharedData", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        id = sharedPreferences.getString("sharedEmail", "");
+
         getAllData();
 
         loadingDialog ld = new loadingDialog(CustomerVendor.this);
 
-        addBtn = findViewById(R.id.addcustBtn);
+        addBtn = findViewById(R.id.addBtn);
         layout = findViewById(R.id.addForm);
         rcvData = findViewById(R.id.rcvData);
 
@@ -52,13 +71,17 @@ public class CustomerVendor extends AppCompatActivity {
         emailET = findViewById(R.id.email);
         addressET = findViewById(R.id.address);
         noteET = findViewById(R.id.note);
+        ndfTxt = findViewById(R.id.ndfTxt);
+        radioTxtbox = findViewById(R.id.radiotxtbox);
+
+        radioGroup = findViewById(R.id.rdg);
 
         addData = findViewById(R.id.addData);
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (layout.getVisibility() == view.GONE) {
-                    layout.setVisibility(view.VISIBLE);
+                    layout.setVisibility(VISIBLE);
                 } else {
                     layout.setVisibility(view.GONE);
                 }
@@ -73,6 +96,17 @@ public class CustomerVendor extends AppCompatActivity {
                 String address = addressET.getText().toString().trim();
                 String note = noteET.getText().toString().trim();
 
+                int selectedRadioBtnID = radioGroup.getCheckedRadioButtonId();
+
+                if (selectedRadioBtnID == -1) {
+                    radioTxtbox.setError("Select a/c Type");
+                    return;
+                }
+                if (selectedRadioBtnID != -1) {
+                    selectedRadioBtn = findViewById(selectedRadioBtnID);
+                    selectedText = selectedRadioBtn.getText().toString();
+                }
+
                 if (cname.isEmpty()) {
                     cnameET.setError("Required");
                     return;
@@ -84,7 +118,7 @@ public class CustomerVendor extends AppCompatActivity {
                 }
 
                 if (!cno.matches("[0-9]*")) {
-                    cnoET.setError("Enter ");
+                    cnoET.setError("Enter numbers only");
                     return;
                 }
 
@@ -107,7 +141,7 @@ public class CustomerVendor extends AppCompatActivity {
                 }
 
                 ld.startLoading();
-                CustVendModel data = new CustVendModel(cname, cno, email, address, note);
+                CustVendModel data = new CustVendModel(cname, cno, email, address, note, id, selectedText);
 
                 FirebaseFirestore.getInstance().collection("customerVendor").document().set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -130,7 +164,7 @@ public class CustomerVendor extends AppCompatActivity {
     public void getAllData() {
         dataList = new ArrayList<>();
         dataList.clear();
-        FirebaseFirestore.getInstance().collection("customerVendor").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("customerVendor").whereEqualTo("idEmail", id).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error == null) {
@@ -138,6 +172,9 @@ public class CustomerVendor extends AppCompatActivity {
                     dataList.addAll(data);
                     rcvData.setLayoutManager(new LinearLayoutManager(CustomerVendor.this));
                     rcvData.setAdapter(new ReadDataAdapter(CustomerVendor.this, dataList));
+                }
+                if (value.isEmpty()) {
+                    ndfTxt.setVisibility(VISIBLE);
                 }
             }
         });

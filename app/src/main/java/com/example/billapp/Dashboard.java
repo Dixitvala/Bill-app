@@ -18,8 +18,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Dashboard extends AppCompatActivity {
     //added drawer
-    Button logout;
-    TextView username;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -41,10 +39,6 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // variables
-//        logout = findViewById(R.id.logoutBtn);
-//        username = findViewById(R.id.userName);
-
         // drawer variable assignment
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -57,11 +51,13 @@ public class Dashboard extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if (id == R.id.dashboard) {
-                    Toast.makeText(Dashboard.this, "Dashboard", Toast.LENGTH_SHORT).show();
+                    drawerLayout.close();
                 } else if (id == R.id.custVend) {
+                    drawerLayout.close();
                     startActivity(new Intent(getApplicationContext(), CustomerVendor.class));
                 } else if (id == R.id.product) {
-                    Toast.makeText(Dashboard.this, "Product", Toast.LENGTH_SHORT).show();
+                    drawerLayout.close();
+                    startActivity(new Intent(getApplicationContext(), Products.class));
                 } else if (id == R.id.saleInvoice) {
                     Toast.makeText(Dashboard.this, "Sale Invoice", Toast.LENGTH_SHORT).show();
                 } else if (id == R.id.purchaseInvoice) {
@@ -77,26 +73,8 @@ public class Dashboard extends AppCompatActivity {
         });
 
         // sharedPreference
-        sharedPreferences =
-
-                getSharedPreferences("sharedData", MODE_PRIVATE);
-
+        sharedPreferences = getSharedPreferences("sharedData", MODE_PRIVATE);
         editor = sharedPreferences.edit();
-
-        String userName = sharedPreferences.getString("sharedEmail", "");
-
-//        username.setText(userName);
-
-        // logout button for logout user from app
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                editor.clear();
-//                editor.commit();
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                finish();
-//            }
-//        });
     }
 
     @Override

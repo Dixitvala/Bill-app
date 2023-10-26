@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -20,7 +21,7 @@
         android:id="@+id/emailHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="10sp"
+        android:paddingHorizontal="10sp"
         android:paddingBottom="5sp"
         android:text="@string/email"
         android:textColor="@color/white" />
@@ -29,16 +30,17 @@
         android:id="@+id/cnoHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="10sp"
+        android:paddingHorizontal="10sp"
         android:paddingBottom="5sp"
         android:text="Contact no"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/addressHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="10sp"
+        android:paddingHorizontal="10sp"
         android:paddingBottom="5sp"
         android:text="@string/address"
         android:textColor="@color/white" />
@@ -47,9 +49,18 @@
         android:id="@+id/noteHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="10sp"
+        android:paddingHorizontal="10sp"
         android:paddingBottom="5sp"
         android:text="@string/note"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/acTypeHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10sp"
+        android:paddingBottom="5sp"
+        android:text="acType"
         android:textColor="@color/white" />
 
 </LinearLayout>

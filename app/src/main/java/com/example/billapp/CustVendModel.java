@@ -1,17 +1,36 @@
 package com.example.billapp;
 
 public class CustVendModel {
-    String cname, cno, email, address, note;
+    String cname, cno, email, address, note, idEmail, acType;
 
     public CustVendModel() {
     }
 
-    public CustVendModel(String cname, String cno, String email, String address, String note) {
+    public String getIdEmail() {
+        return idEmail;
+    }
+
+    public void setIdEmail(String idEmail) {
+        this.idEmail = idEmail;
+    }
+
+    public String getAcType() {
+        return acType;
+    }
+
+    public void setAcType(String acType) {
+        this.acType = acType;
+    }
+
+    public CustVendModel(String cname, String cno, String email, String address, String note, String idEmail, String acType) {
         this.cname = cname;
         this.cno = cno;
         this.email = email;
         this.address = address;
         this.note = note;
+        this.idEmail = idEmail;
+        this.acType = acType;
+
     }
 
     public String getCname() {

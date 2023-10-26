@@ -22,7 +22,7 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataAdapter.ReadDa
     @NonNull
     @Override
     public ReadDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ReadDataHolder(LayoutInflater.from(customerVendor).inflate(R.layout.item_data, parent, false));
+        return new ReadDataHolder(LayoutInflater.from(customerVendor).inflate(R.layout.item_data_cust, parent, false));
     }
 
     @Override
@@ -32,6 +32,7 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataAdapter.ReadDa
         holder.email.setText(dataList.get(position).getEmail());
         holder.address.setText(dataList.get(position).getAddress());
         holder.note.setText(dataList.get(position).getNote());
+        holder.actype.setText(dataList.get(position).getAcType());
     }
 
     @Override
@@ -41,7 +42,7 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataAdapter.ReadDa
 
     class ReadDataHolder extends RecyclerView.ViewHolder {
 
-        TextView comname, email, cno, address, note;
+        TextView comname, email, cno, address, note, actype;
 
         public ReadDataHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,6 +51,7 @@ public class ReadDataAdapter extends RecyclerView.Adapter<ReadDataAdapter.ReadDa
             cno = itemView.findViewById(R.id.cnoHead);
             address = itemView.findViewById(R.id.addressHead);
             note = itemView.findViewById(R.id.noteHead);
+            actype = itemView.findViewById(R.id.acTypeHead);
         }
     }
 }
