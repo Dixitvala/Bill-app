@@ -39,6 +39,9 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        loadingDialog ld = new loadingDialog(Dashboard.this);
+
+
         // drawer variable assignment
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -59,9 +62,11 @@ public class Dashboard extends AppCompatActivity {
                     drawerLayout.close();
                     startActivity(new Intent(getApplicationContext(), Products.class));
                 } else if (id == R.id.saleInvoice) {
-                    Toast.makeText(Dashboard.this, "Sale Invoice", Toast.LENGTH_SHORT).show();
+                    drawerLayout.close();
+                    startActivity(new Intent(getApplicationContext(), SaleInvoice.class));
                 } else if (id == R.id.purchaseInvoice) {
-                    Toast.makeText(Dashboard.this, "Purchase Invoice", Toast.LENGTH_SHORT).show();
+                    drawerLayout.close();
+                    startActivity(new Intent(getApplicationContext(), PurchaseInvoice.class));
                 } else if (id == R.id.logout) {
                     editor.clear();
                     editor.commit();

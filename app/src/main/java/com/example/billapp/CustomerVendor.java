@@ -45,7 +45,7 @@ public class CustomerVendor extends AppCompatActivity {
     String id;
     RadioGroup radioGroup;
     RadioButton selectedRadioBtn;
-    String selectedText;
+    String selectedText, collection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +58,9 @@ public class CustomerVendor extends AppCompatActivity {
 
         id = sharedPreferences.getString("sharedEmail", "");
 
-        getAllData();
-
         loadingDialog ld = new loadingDialog(CustomerVendor.this);
+
+        getAllData();
 
         addBtn = findViewById(R.id.addBtn);
         layout = findViewById(R.id.addForm);
@@ -143,7 +143,15 @@ public class CustomerVendor extends AppCompatActivity {
                 ld.startLoading();
                 CustVendModel data = new CustVendModel(cname, cno, email, address, note, id, selectedText);
 
-                FirebaseFirestore.getInstance().collection("customerVendor").document().set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+                if (selectedText.equals("Customer")) {
+                    collection = "customer";
+                } else if (selectedText.equals("Vendor")) {
+                    collection = "vendor";
+                } else {
+                    collection = "customerVendor";
+                }
+
+                FirebaseFirestore.getInstance().collection(collection).document().set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -164,7 +172,9 @@ public class CustomerVendor extends AppCompatActivity {
     public void getAllData() {
         dataList = new ArrayList<>();
         dataList.clear();
-        FirebaseFirestore.getInstance().collection("customerVendor").whereEqualTo("idEmail", id).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+        // customer
+        FirebaseFirestore.getInstance().collection("customer").whereEqualTo("idEmail", id).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (error == null) {
@@ -173,8 +183,31 @@ public class CustomerVendor extends AppCompatActivity {
                     rcvData.setLayoutManager(new LinearLayoutManager(CustomerVendor.this));
                     rcvData.setAdapter(new ReadDataAdapter(CustomerVendor.this, dataList));
                 }
-                if (value.isEmpty()) {
-                    ndfTxt.setVisibility(VISIBLE);
+            }
+        });
+
+        // vendor
+        FirebaseFirestore.getInstance().collection("vendor").whereEqualTo("idEmail", id).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error == null) {
+                    List<CustVendModel> data = value.toObjects(CustVendModel.class);
+                    dataList.addAll(data);
+                    rcvData.setLayoutManager(new LinearLayoutManager(CustomerVendor.this));
+                    rcvData.setAdapter(new ReadDataAdapter(CustomerVendor.this, dataList));
+                }
+            }
+        });
+
+        // vendor
+        FirebaseFirestore.getInstance().collection("customerVendor").whereEqualTo("idEmail", id).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error == null) {
+                    List<CustVendModel> data = value.toObjects(CustVendModel.class);
+                    dataList.addAll(data);
+                    rcvData.setLayoutManager(new LinearLayoutManager(CustomerVendor.this));
+                    rcvData.setAdapter(new ReadDataAdapter(CustomerVendor.this, dataList));
                 }
             }
         });
