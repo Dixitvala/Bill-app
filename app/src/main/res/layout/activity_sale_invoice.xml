@@ -43,6 +43,13 @@
             android:orientation="vertical"
             android:visibility="visible">
 
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                
+
+            </Spinner>
+
             <EditText
                 android:id="@+id/comname"
                 android:layout_width="match_parent"
